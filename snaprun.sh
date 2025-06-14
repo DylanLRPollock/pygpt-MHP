@@ -1,4 +1,12 @@
 #!/bin/bash
+# ==================================================
+# This file is a part of the 'Monkey Head Project'
+# Website:   https://dlrp.ca
+# GitHub:  https://github.com/DylanLRPollock/Monkey-Head-Project
+# License:   https://opensource.org/license/gpl-3-0
+# Overseen By:   Dylan L.R. Pollock
+# Updated:   06.07.2025
+# ==================================================
 
 # This script is used to run the app in the snap environment
 # export QTWEBENGINE_DISABLE_GPU=1
@@ -26,4 +34,4 @@ else
     export LIBGL_DRIVERS_PATH=$SNAP/usr/lib/$ARCH/dri
 fi
 
-python3 $SNAP/src/pygpt_net/app.py "$@"
+python3 "$SNAP"/src/pygpt_net/app.py "$@"

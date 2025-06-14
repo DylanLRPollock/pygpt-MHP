@@ -2,7 +2,7 @@
 
 ## 2.5.10 (2025-03-06)
 
-- Added a new model: Claude 3.7 Sonnet.  
+- Added a new model: Claude 3.7 Sonnet.
 - Fixed the context switch issue when the column changed and the tab is not a chat tab.
 - LlamaIndex upgraded to 0.12.22.
 - LlamaIndex LLMs upgraded to recent versions.

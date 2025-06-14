@@ -60,7 +60,7 @@ You can download compiled 64-bit versions for Windows and Linux here: https://py
 - Provides an intuitive operation and interface.
 - Includes a notepad.
 - Includes simple painter / drawing tool.
-- Supports multiple languages.
+- Supports English (US) only.
 - Requires no previous knowledge of using AI models.
 - Simplifies image generation using `DALL-E`.
 - Fully configurable.
@@ -337,6 +337,7 @@ Please go to `Debugging and Logging` section for instructions on how to log and 
 **Tip:** The API key is required to work with the OpenAI API. If you wish to use custom API endpoints or local API that do not require API keys, simply enter anything into the API key field to avoid a prompt about the API key being empty.
 
 During the initial launch, you must configure your API key within the application.
+You can now enter the key directly in the welcome dialog or open the settings window.
 
 To do so, navigate to the menu:
 
@@ -1307,9 +1308,6 @@ You must also provide the appropriate region for Azure here. *Default:* `eastus`
 
 Here you can specify the name of the voice used for speech synthesis for English. *Default:* `en-US-AriaNeural`
 
-- `Voice (non-English)` *azure_voice_pl*
-
-Here you can specify the name of the voice used for speech synthesis for other non-english languages. *Default:* `pl-PL-AgnieszkaNeural`
 
 **Google Text-To-Speech**
 
@@ -3046,7 +3044,7 @@ The configuration is stored in JSON files for easy manual modification outside o
 These configuration files are located in the user's work directory within the following subdirectory:
 
 ``` ini
-{HOME_DIR}/.config/pygpt-net/
+{PROJECT_DIR}/
 ```
 
 ## Manual configuration
@@ -3054,7 +3052,7 @@ These configuration files are located in the user's work directory within the fo
 You can manually edit the configuration files in this directory (this is your work directory):
 
 ``` ini
-{HOME_DIR}/.config/pygpt-net/
+{PROJECT_DIR}/
 ```
 
 - `assistants.json` - stores the list of assistants.
@@ -3114,7 +3112,7 @@ This allows you to overwrite language files or CSS styles in a very simple way -
 
 
 ``` ini
-{HOME_DIR}/.config/pygpt-net/
+{PROJECT_DIR}/
 ```
 
 - `locale` - a directory for locales in `.ini` format.
@@ -3385,7 +3383,7 @@ In `Settings -> Developer` dialog, you can enable the `Show debug menu` option t
 By default, all errors and exceptions are logged to the file:
 
 ```ini
-{HOME_DIR}/.config/pygpt-net/app.log
+{PROJECT_DIR}/app.log
 ```
 
 To increase the logging level (`ERROR` level is default), run the application with `--debug` argument:
@@ -3974,7 +3972,7 @@ may consume additional tokens that are not displayed in the main window.
 
 **2.5.10 (2025-03-06)**
 
-- Added a new model: Claude 3.7 Sonnet.  
+- Added a new model: Claude 3.7 Sonnet.
 - Fixed the context switch issue when the column changed and the tab is not a chat tab.
 - LlamaIndex upgraded to 0.12.22.
 - LlamaIndex LLMs upgraded to recent versions.
@@ -4041,6 +4039,70 @@ may consume additional tokens that are not displayed in the main window.
 - Fix: tool calls in Ollama provider.
 - Fix: error handling in stream mode.
 - Fix: added check for active plugin tools before tool call.
+
+**2.4.57 (2025-01-19)**
+
+- Logging fix.
+
+**2.4.56 (2025-01-19)**
+
+- Improved tab switching and focus change.
+- Improved global keyboard shortcuts handling.
+
+**2.4.55 (2025-01-18)**
+
+- Added a new option in settings: Audio -> Recording timeout.
+- Added a new option in settings: Audio -> Enable timeout in continuous mode.
+
+**2.4.54 (2025-01-18)**
+
+- Audio output switched from PyGame to PyAudio. It may be necessary to manually connect Alsa in Snap version with: "sudo snap connect pygpt:alsa".
+- Added audio output volume progress bar.
+
+**2.4.53 (2025-01-17)**
+
+- Fix: issue #89
+
+**2.4.52 (2025-01-17)**
+
+- Improved audio input button visibility toggle.
+- Fix: check for required arguments - issue #88.
+- UI Fixes.
+
+**2.4.51 (2025-01-17)**
+
+- Added a "Continuous recording" mode under Audio Input in the Notepad tab, allowing for recording long voice notes and real-time auto-transcription. (beta)
+- A new option has been added in Settings -> Audio -> Continuous recording auto-transcribe interval.
+
+**2.4.50 (2025-01-16)**
+
+- Refactored audio input core.
+- Added audio input volume progress bar.
+
+**2.4.49 (2025-01-16)**
+
+- Fix: stream render in Assistants mode.
+- Fix: items remove in context regen/edit.
+
+**2.4.48 (2025-01-16)**
+
+- Fix: parsing lists in data loaders configuration.
+- Fix: crash on Windows on PySide6 v6.6.0.
+- Added Gemini embeddings to LlamaIndex settings.
+- LlamaIndex upgraded to 0.12.11.
+- Security updates.
+
+**2.4.47 (2025-01-14)**
+
+- Added support for Python 3.12.
+- Added a new model to Chat with Files: gemini-2.0-flash-exp.
+- PySide6 upgraded to 6.6.0.
+
+**2.4.46 (2024-12-16)**
+
+- Added a new tab in Settings: "API Keys", where the API keys configuration for Google and Anthropic models has been relocated.
+- Introduced a new mode in "Chat with Files": "Retrieve Only", which allows for retrieving raw documents from the index.
+- Fixed a bug related to tool calls in the Gemini provider when using Chat with Files mode.
 
 # Credits and links
 
