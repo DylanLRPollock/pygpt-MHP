@@ -9,7 +9,7 @@ By default, all errors and exceptions are logged to the file:
 
 .. code-block:: ini
 
-	{HOME_DIR}/.config/pygpt-net/app.log
+        {HOME_DIR}/.config/pygpt-MHP/app.log
 
 To increase the logging level (``ERROR`` level is default), run the application with ``--debug`` argument:
 
@@ -40,6 +40,12 @@ and to force disable OpenGL hardware acceleration:
 .. code-block:: console
 
     python3 run.py --disable-gpu=1
+
+and to force enable OpenGL hardware acceleration:
+
+.. code-block:: console
+
+    python3 run.py --enable-gpu=1
 
 You can also manualy enable legacy mode by editing config file - open the ``%WORKDIR%/config.json`` config file in editor and set the following options:
 

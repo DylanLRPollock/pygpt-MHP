@@ -1,3 +1,11 @@
+# ==================================================  #
+# This file is a part of the 'Monkey Head Project'                                       #
+# Website:   https://dlrp.ca                                                                            #
+# GitHub:  https://github.com/DylanLRPollock/Monkey-Head-Project    #
+# License:   https://opensource.org/license/gpl-3-0                                 #
+# Overseen By:   Dylan L.R. Pollock                                                             #
+# Updated: 06.05.2025                                                                                 #
+# ================================================== #
 @echo off
 
 REM https://github.com/wixtoolset/wix3/releases/tag/wix3141rtm
@@ -5,7 +13,7 @@ REM https://github.com/wixtoolset/wix3/releases/tag/wix3141rtm
 REM Set variables
 SET SourceDir=%CD%\..\dist\Windows
 SET InstallerOutputFolder=%CD%\..\dist
-SET ProductVersion=2.5.10
+SET ProductVersion=2.5.8
 SET ProductUpgradeCode=3FCD39F6-4965-4B51-A185-FC6E53CA431B
 SET WIX=C:\Program Files (x86)\WiX Toolset v3.14
 SET SIGNTOOL=C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool

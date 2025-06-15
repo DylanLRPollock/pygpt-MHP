@@ -6,7 +6,7 @@ Release: **2.5.10** | build: **2025.03.06** | Python: **>=3.10, <3.13**
 
 > Official website: https://pygpt.net | Documentation: https://pygpt.readthedocs.io
 > 
-> Discord: https://pygpt.net/discord | Snap: https://snapcraft.io/pygpt | PyPi: https://pypi.org/project/pygpt-net
+> Discord: https://pygpt.net/discord | Snap: https://snapcraft.io/pygpt | PyPi: https://pypi.org/project/pygpt-MHP
 > 
 > Compiled version for Linux (`zip`) and Windows 10/11 (`msi`) 64-bit: https://pygpt.net/#download
 > 
@@ -154,7 +154,7 @@ source venv/bin/activate
 2. Install from PyPi:
 
 ``` commandline
-pip install pygpt-net
+pip install pygpt-MHP
 ```
 
 3. Once installed run the command to start the application:
@@ -311,6 +311,12 @@ and to force disable OpenGL hardware acceleration:
 
 ``` ini
 python3 run.py --disable-gpu=1
+```
+
+and to force enable OpenGL hardware acceleration:
+
+``` ini
+python3 run.py --enable-gpu=1
 ```
 
 You can also manualy enable legacy mode by editing config file - open the `%WORKDIR%/config.json` config file in editor and set the following options:
@@ -3416,6 +3422,12 @@ and to force disable OpenGL hardware acceleration:
 python3 run.py --disable-gpu=1
 ```
 
+and to force enable OpenGL hardware acceleration:
+
+``` ini
+python3 run.py --enable-gpu=1
+```
+
 You can also manualy enable legacy mode by editing config file - open the `%WORKDIR%/config.json` config file in editor and set the following options:
 
 ``` json
@@ -4118,7 +4130,7 @@ may consume additional tokens that are not displayed in the main window.
 
 **Snap Store:** <https://snapcraft.io/pygpt>
 
-**PyPI:** <https://pypi.org/project/pygpt-net>
+**PyPI:** <https://pypi.org/project/pygpt-MHP>
 
 **Author:** Marcin Szczygliński (Poland, EU)
 

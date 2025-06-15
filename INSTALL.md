@@ -48,7 +48,7 @@ source venv/bin/activate
 2. Install from PyPi:
 
 ``` commandline
-pip install pygpt-net
+pip install pygpt-MHP
 ```
 
 3. Once installed run the command to start the application:
@@ -186,6 +186,12 @@ and to force disable OpenGL:
 
 ``` ini
 python3 run.py --disable-gpu=1
+```
+
+and to force enable OpenGL:
+
+``` ini
+python3 run.py --enable-gpu=1
 ```
 
 You can also manualy enable legacy mode by editing config file - open the `%WORKDIR%/config.json` config file in editor and set the following options:

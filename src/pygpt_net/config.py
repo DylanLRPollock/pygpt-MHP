@@ -22,7 +22,7 @@ from pygpt_net.provider.core.config.json_file import JsonFileProvider
 
 
 class Config:
-    CONFIG_DIR = 'pygpt-net'
+    CONFIG_DIR = 'pygpt-MHP'
     SNAP_NAME = 'pygpt'
     TYPE_STR = 0
     TYPE_INT = 1
@@ -104,7 +104,7 @@ class Config:
 
         :return: base workdir path
         """
-        path = os.path.join(Path.home(), '.config', Config.CONFIG_DIR)
+        path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
         if "PYGPT_WORKDIR" in os.environ and os.environ["PYGPT_WORKDIR"] != "":
             print("FORCE using workdir: {}".format(os.environ["PYGPT_WORKDIR"]))
             # convert relative path to absolute path if needed
@@ -386,38 +386,10 @@ class Config:
         """
         Return list with available languages
 
-        :return: list with available languages (user + app)
+        :return: list with available languages (only English)
         """
-        langs = []
-        path = os.path.join(self.get_app_path(), 'data', 'locale')
-        if os.path.exists(path):
-            for file in os.listdir(path):
-                if file.startswith('locale.') and file.endswith(".ini"):
-                    lang_id = file.replace('locale.', '').replace('.ini', '')
-                    if lang_id not in langs:
-                        langs.append(lang_id)
-
-        path = os.path.join(self.get_user_path(), 'locale')
-        if os.path.exists(path):
-            for file in os.listdir(path):
-                if file.startswith('locale.') and file.endswith(".ini"):
-                    lang_id = file.replace('locale.', '').replace('.ini', '')
-                    if lang_id not in langs:
-                        langs.append(lang_id)
-
-        # sort by name
-        langs.sort()
-
-        # make English first
-        if 'en' in langs:
-            langs.remove('en')
-            langs.insert(0, 'en')
-
-        # make Polish second
-        if 'pl' in langs:
-            langs.remove('pl')
-            langs.insert(1, 'pl')
-        return langs
+        # Only English is supported
+        return ['en']
 
     def append_meta(self) -> dict:
         """

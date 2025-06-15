@@ -10,7 +10,11 @@
 # ================================================== #
 
 import copy
+import os
+from pathlib import Path
 from typing import Optional, List, Dict
+
+from pypdf import PdfReader
 
 from packaging.version import Version
 
@@ -464,6 +468,9 @@ class Attachments:
                         attachment.path,
                     )
 
+        # preload bundled memory files
+        self.preload_memory_pdfs()
+
     def save(self):
         """Save attachments"""
         # replace current workdir with placeholder
@@ -476,3 +483,64 @@ class Attachments:
                         attachment.path,
                     )
         self.provider.save(data)
+
+    def preload_memory_pdfs(self, mode: str = "chat") -> None:
+        """Preload PDF files from the built-in memory directory."""
+        base = Path(__file__).resolve().parents[3]
+        pdf_dir = base / "memory" / "PDF"
+        if not pdf_dir.is_dir():
+            return
+
+        if mode not in self.items:
+            self.items[mode] = {}
+
+        existing = {
+            os.path.abspath(item.path)
+            for item in self.items[mode].values()
+            if item.path is not None
+        }
+
+        changed = False
+        pdf_files = []
+        for entry in sorted(pdf_dir.iterdir()):
+            if entry.suffix.lower() != ".pdf":
+                continue
+            pdf_files.append(entry.name)
+            abs_path = str(entry.resolve())
+            if abs_path in existing:
+                continue
+            self.new(
+                mode=mode,
+                name=entry.name,
+                path=abs_path,
+                auto_save=False,
+            )
+            txt_path = pdf_dir / (entry.stem + ".txt")
+            if not txt_path.exists():
+                try:
+                    with open(abs_path, "rb") as f:
+                        reader = PdfReader(f)
+                        text = ""
+                        for page in reader.pages:
+                            extracted = page.extract_text()
+                            if extracted:
+                                text += extracted + "\n"
+                    with open(txt_path, "w", encoding="utf-8") as out:
+                        out.write(text)
+                except Exception as e:
+                    print(f"PDF preload error: {e}")
+            changed = True
+
+        if changed:
+            self.save()
+
+        if pdf_files:
+            msg = "Available PDF files: " + ", ".join(pdf_files)
+            try:
+                if self.window and hasattr(self.window, "core") \
+                        and hasattr(self.window.core, "debug"):
+                    self.window.core.debug.info(msg)
+                else:
+                    print(msg)
+            except Exception:
+                pass
